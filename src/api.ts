@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:3000', // 替换为你的后端地址
+    baseURL: 'http://localhost:3000/api', // 替换为你的后端地址
     headers: {
         'Content-Type': 'application/json',
     },
@@ -46,8 +46,8 @@ export const getRandomMessages = async (limit: number = 5) => {
 };
 
 // 获取最新留言
-export const getLatestMessages = async (limit: number = 5) => {
-    const response = await apiClient.get('/messages/latest', { params: { limit } });
+export const getLatestMessages = async (limit: number = 5, offset: number = 0) => {
+    const response = await apiClient.get('/messages/latest', { params: { limit, offset } });
     return response.data;
 };
 
